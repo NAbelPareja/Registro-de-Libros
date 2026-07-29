@@ -1,33 +1,91 @@
-import {MejorLibro} from "../components/MejorLibro";
-import {UltimosLibros} from "../components/UltimosLibros";
+import { useEffect, useState } from "react";
+import { MejorLibro } from "../components/MejorLibro";
+import { UltimosLibros } from "../components/UltimosLibros";
+import { useBooks } from "../hooks/useBooks";
 
 export const Home = () => {
+  const { listaBooks } = useBooks();
+  const mejorLibro = listaBooks.filter((valor) => valor.calificacion === 5);
+
+  const [indice, setIndice] = useState(0);
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setVisible(false)
+      setTimeout(() => {
+        setIndice((numero) => {
+        if (numero === listaBooks.length - 4) {
+          return 0;
+        }
+        return numero + 1;
+      });
+      setTimeout(() => {
+        setVisible(true)
+      }, 500);
+      }, 100);
+      
+    }, 8000);
+
+    return () => clearInterval(intervalo);
+  }, []);
+
   return (
     <div className=" px-15 py-20">
       <div className="flex flex-row space-between gap-20 ">
         <div className="flex flex-col gap-5">
-          <p className="text-amber-800 text-lg">Tu biblioteca personal digital</p>
+          <p className="text-amber-800 text-lg">
+            Tu biblioteca personal digital
+          </p>
           <h1 className="text-5xl">No Hay Mejor Amigo Que Un Buen Libro</h1>
-          <p className="text-stone-700">Organiza, descubre y lleva el control de tu colección de libros de forma sencilla y elegante. Tu biblioteca, a tu manera.</p>
+          <p className="text-stone-700">
+            Organiza, descubre y lleva el control de tu colección de libros de
+            forma sencilla y elegante. Tu biblioteca, a tu manera.
+          </p>
           <div>
-          <input type="text" placeholder="Correo electrónico" className="bg-zinc-100 py-1 px-2 rounded-tl rounded-bl"
-           /> 
-          <button className="bg-amber-700 py-1 px-2 rounded-tr rounded-br ">Suscribirse</button>
+            <input
+              type="text"
+              placeholder="Correo electrónico"
+              className="bg-zinc-100 py-1 px-2 rounded-tl rounded-bl"
+            />
+            <button className="bg-amber-700 py-1 px-2 rounded-tr rounded-br ">
+              Suscribirse
+            </button>
           </div>
-          <div className="flex flex-row">
-            <div>
-              <h1>img</h1>
-              <img src="s" alt=""/>
+          <div className="flex flex-row gap-5 items-center">
+
+            <div className="flex items-center">
+              <img
+                src={listaBooks[indice +3].portada}
+                alt={listaBooks[indice +3].portada}
+                className={`w-18 h-24 object-cover rounded-lg border-r border-3 border-stone-200 transition-opacity ${visible ? "opacity-100 duration-500":"opacity-0 duration-500"}`}
+                />
+              <img
+                src={listaBooks[indice +2].portada}
+                alt={listaBooks[indice +2].portada}
+                className={`w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200 transition-opacity ${visible ? "opacity-100 duration-500":"opacity-0 duration-500"}`}
+                />
+              <img
+                src={listaBooks[indice +1].portada}
+                alt={listaBooks[indice +1].portada}
+                className="w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200"
+              />
+              <img
+                src={listaBooks[indice].portada}
+                alt={listaBooks[indice].portada}
+                className="w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200"
+                />
             </div>
-            <h2>120 libros de tu coleccion</h2>
+            <div className="text-amber-800">
+              {listaBooks.length} libros de coleccion
+            </div>
           </div>
         </div>
         <div>
-          <MejorLibro></MejorLibro>
+          <MejorLibro mejorLibro={mejorLibro}></MejorLibro>
         </div>
       </div>
       <UltimosLibros></UltimosLibros>
     </div>
-    
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
 export const BookPdfLoad = () => {
   return (
-    <div className="flex flex-col gap-5 m-5">
+    <div className="flex flex-col gap-5">
       <div>
         <img src="" alt="Portada" />
         <input type="file" id="portada" hidden accept="image/*" onChange="" />

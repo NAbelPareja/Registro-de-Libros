@@ -1,12 +1,12 @@
-export const BookList = ({listaBooks}) => {
+import { libros } from "../data/initialBooks";
+export const BooksMuestra = () => {
   return (
-    <div className="m-10">
+    <div className="">
       <h2 className="text-2xl">Mis Libros</h2>
-      <p>Mostrando 8 de 150 libros</p>
-      <div className="grid grid-cols-4 gap-10">
-        {listaBooks.map((libro) => (
+      <div className="flex flex-col ">
+        {libros.map((libro) => (
           <div
-            className="bg-zinc-100 w-fit border-1 border-stone-300 rounded-xl  my-5"
+            className="bg-zinc-100 w-full border-1 border-stone-300 rounded-xl  my-5"
             key={libro.id}
           >
             <img

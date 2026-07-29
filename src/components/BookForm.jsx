@@ -1,14 +1,20 @@
-export const BookForm = () => {
+
+export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange }) => {
+
   return (
-    <div className="m-5">
-      <form action="">
+    <div className="">
+      <form action="" onSubmit={handleGuardarLibro}>
         <fieldset className="flex flex-col gap-3">
-          <legend>Información del libro</legend>
+          <legend className="font-bold">Información del libro</legend>
           <div className="flex flex-col w-full gap-1">
             <label htmlFor="">Titulo</label>
             <input
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
               type="text"
+              name="titulo"
+              value={form.titulo}
+              onChange={handleInpuChange}
+              required
             />
           </div>
 
@@ -17,27 +23,37 @@ export const BookForm = () => {
             <input
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
               type="text"
+              name="autor"
+              value={form.autor}
+              onChange={handleInpuChange}
+              required
             />
           </div>
 
           <div className="flex flex-col w-full gap-1">
             <label htmlFor="">Categoria</label>
             <select
-              name=""
-              id=""
+              name="categoria"
+              id="categoria"
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
-            >
-              <option value=""></option>
-              <option value=""></option>
+              value={form.categoria}
+              onChange={handleInpuChange}
+              required
+              >
+              { categorias.map(valor => (
+                <option key={valor.id} value={valor.id}>{valor.nombre}</option>
+              ))}
             </select>
           </div>
 
           <div className="flex flex-col w-full gap-1">
             <label htmlFor="">Estado</label>
             <select
-              name=""
+              name="estado"
               id=""
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
+              value={form.estado}
+              onChange={handleInpuChange}
             >
               <option value="">Por leer</option>
               <option value="">Leyendo</option>
@@ -46,7 +62,8 @@ export const BookForm = () => {
           </div>
           <div>
             <label htmlFor="">Calificacion</label>
-            <input type="radio" id="star5" name="calificacion" value="5" />
+            <input type="radio" id="star5" name="calificacion" value={form.calificacion}
+              onChange={handleInpuChange}/>
             <label HtmlFor="star5" title="5 estrellas">
               ★
             </label>
@@ -76,6 +93,9 @@ export const BookForm = () => {
             <input
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
               type="text"
+              name="descripcion"
+              value={form.descripcion}
+              onChange={handleInpuChange}
             />
           </div>
           
@@ -84,6 +104,10 @@ export const BookForm = () => {
             <input
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
               type="date"
+              name="fechaPublicacion"
+              value={form.fechaPublicacion}
+              onChange={handleInpuChange}
+              required
             />
           </div>
 
@@ -92,9 +116,12 @@ export const BookForm = () => {
             <input
               className="bg-stone-100 border-amber-700 border-1 rounded-md"
               type="date"
+              name="fechaAgregado"
+              value={form.fechaAgregado}
+              onChange={handleInpuChange}
+              required
             />
           </div>
-
         </fieldset>
         <button
           type="submit"

@@ -4,3 +4,4 @@ export const categorias = [
     { id: 3, nombre: "Fantasía" },
     { id: 4, nombre: "Ciencia ficción" },
 ]
+
