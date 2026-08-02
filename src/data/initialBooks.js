@@ -56,7 +56,7 @@ export const libros = [
     fechaPublicacion: "1949-06-08",
     fechaAgregado: "2026-07-12",
     portada: "/img/books/1984.jpg",
-    pdf: "/pdfs/1984.pdf",
+    pdf: "/pfds/1984.pdf",
   },
 
   {
@@ -101,7 +101,7 @@ export const libros = [
     fechaPublicacion: "2015-12-27",
     fechaAgregado: "2026-07-05",
     portada: "/img/books/you-dont-know-js.jpg",
-    pdf: "/pdfs/you-dont-know-js.pdf",
+    pdf: "/pdfs/books/you-dont-know-js.pdf",
   },
 
   {

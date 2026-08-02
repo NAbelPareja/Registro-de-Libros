@@ -5,31 +5,46 @@ import { useBooks } from "../hooks/useBooks";
 
 export const Home = () => {
   const { listaBooks } = useBooks();
-  const mejorLibro = listaBooks.filter((valor) => valor.calificacion === 5);
+
+  let mejorLibro = [];
+
+  for (let estrellas = 5; estrellas >= 1; estrellas--) {
+    mejorLibro = listaBooks.filter((valor) => valor.calificacion === estrellas);
+    if (mejorLibro.length > 0) {
+      break;
+    }
+  }
 
   const [indice, setIndice] = useState(0);
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const intervalo = setInterval(() => {
-      setVisible(false)
+      setVisible(false);
+      
       setTimeout(() => {
         setIndice((numero) => {
-        if (numero === listaBooks.length - 4) {
-          return 0;
-        }
-        return numero + 1;
-      });
-      setTimeout(() => {
-        setVisible(true)
-      }, 500);
+          
+          if (numero === listaBooks.length - 4) {
+            return 0;
+          }
+          if(listaBooks.length < numero+2){
+            return 0;
+          }else{
+            return numero + 1;
+          }
+          
+        });
+        setTimeout(() => {
+          setVisible(true);
+        }, 500);
       }, 100);
-      
     }, 8000);
 
     return () => clearInterval(intervalo);
-  }, []);
-
+  }, [listaBooks.length]);
+  console.log("El valor de indice es: ",indice)
+  console.log( listaBooks.length)
   return (
     <div className=" px-15 py-20">
       <div className="flex flex-row space-between gap-20 ">
@@ -53,29 +68,32 @@ export const Home = () => {
             </button>
           </div>
           <div className="flex flex-row gap-5 items-center">
-
-            <div className="flex items-center">
-              <img
-                src={listaBooks[indice +3].portada}
-                alt={listaBooks[indice +3].portada}
-                className={`w-18 h-24 object-cover rounded-lg border-r border-3 border-stone-200 transition-opacity ${visible ? "opacity-100 duration-500":"opacity-0 duration-500"}`}
+            {listaBooks.length === 0 ? (
+              <p>NO HAY LIBROS</p>
+            ) : (
+              <div className="flex items-center">
+                <img
+                  src={listaBooks[(indice + 3)% listaBooks.length].portada}
+                  alt={listaBooks[(indice + 3)% listaBooks.length].portada}
+                  className={`w-18 h-24 object-cover rounded-lg border-r border-3 border-stone-200 transition-opacity ${visible ? "opacity-100 duration-500" : "opacity-0 duration-500"}`}
                 />
-              <img
-                src={listaBooks[indice +2].portada}
-                alt={listaBooks[indice +2].portada}
-                className={`w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200 transition-opacity ${visible ? "opacity-100 duration-500":"opacity-0 duration-500"}`}
+                <img
+                  src={listaBooks[(indice + 2)% listaBooks.length].portada}
+                  alt={listaBooks[(indice + 2)% listaBooks.length].portada}
+                  className={`w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200 transition-opacity ${visible ? "opacity-100 duration-500" : "opacity-0 duration-500"}`}
                 />
-              <img
-                src={listaBooks[indice +1].portada}
-                alt={listaBooks[indice +1].portada}
-                className="w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200"
-              />
-              <img
-                src={listaBooks[indice].portada}
-                alt={listaBooks[indice].portada}
-                className="w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200"
+                <img
+                  src={listaBooks[(indice + 1)% listaBooks.length].portada}
+                  alt={listaBooks[(indice + 1)% listaBooks.length].portada}
+                  className="w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200"
                 />
-            </div>
+                <img
+                  src={listaBooks[indice].portada}
+                  alt={listaBooks[indice].portada}
+                  className="w-18 h-24 object-cover rounded-lg -ml-2 border-r border-3 border-stone-200"
+                />
+              </div>
+            )}
             <div className="text-amber-800">
               {listaBooks.length} libros de coleccion
             </div>
@@ -85,7 +103,6 @@ export const Home = () => {
           <MejorLibro mejorLibro={mejorLibro}></MejorLibro>
         </div>
       </div>
-      <UltimosLibros></UltimosLibros>
     </div>
   );
 };

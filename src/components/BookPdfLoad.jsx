@@ -1,9 +1,15 @@
-export const BookPdfLoad = () => {
+export const BookPdfLoad = ({ handlePdf, handlePortada, form }) => {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <img src="" alt="Portada" />
-        <input type="file" id="portada" hidden accept="image/*" onChange="" />
+        <img src={form.portada} alt="Portada" className="w-full  py-2" />
+        <input
+          type="file"
+          id="portada"
+          hidden
+          onChange={handlePortada}
+          required
+        />
         <label
           className="border-2 border-dashed border-amber-700 rounded-xl w-full flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50"
           htmlFor="portada"
@@ -12,33 +18,26 @@ export const BookPdfLoad = () => {
         </label>
       </div>
       <div>
-        <p >Sube tu libro en Pdf y gestionala de manera eficaz</p>
-        <div className="flex flex-row gap-5 mt-5">
-          <input type="file" id="pdf" hidden accept=".pdf" onChange="" />
+        <p>Sube tu libro en Pdf y gestionala de manera eficaz</p>
+        <div className=" mt-2">
+          <input
+            type="file"
+            id="pdf"
+            hidden
+            accept=".pdf"
+            onChange={handlePdf}
+            required
+          />
           <label
-            className="border-2 bg-amber-700 border-none text-stone-100 font-bold rounded-xl w-64 flex flex-col items-center justify-center cursor-pointer hover:bg-amber-800 "
+            className="border-2 bg-amber-700 border-none text-stone-100 font-bold rounded-xl w- px-2 py-2 flex flex-col items-center justify-center cursor-pointer hover:bg-amber-800 hover:scale-110 transition "
             htmlFor="pdf"
           >
             Seleccionar archivos PDF
           </label>
-          <div className="flex flex-col gap-2">
-            <input type="file" id="pdf" hidden accept=".pdf" onChange="" />
-            <label
-              className="border-2 bg-amber-700 border-none text-stone-100 font-bold rounded-xl  cursor-pointer hover:bg-amber-800  flex flex-col items-center justify-center "
-              htmlFor="pdf"
-            >
-              drive
-            </label>
-            <input type="file" id="pdf" hidden accept=".pdf" onChange="" />
-            <label
-              className="border-2 bg-amber-700 border-none text-stone-100 font-bold rounded-xl cursor-pointer hover:bg-amber-800 flex flex-col items-center justify-center "
-              htmlFor="pdf"
-            >
-              drobox
-            </label>
-          </div>
         </div>
-        <p className="text-stone-700 flex flex-col items-center justify-center">o arrastra y suelta los PDF aqui</p>
+        <p className="text-stone-700 flex flex-col items-center justify-center">
+          o arrastra y suelta los PDF aqui
+        </p>
       </div>
     </div>
   );

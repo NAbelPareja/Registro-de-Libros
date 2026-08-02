@@ -64,7 +64,7 @@ export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange
             <label htmlFor="">Calificacion</label>
             <input type="radio" id="star5" name="calificacion" value={form.calificacion}
               onChange={handleInpuChange}/>
-            <label HtmlFor="star5" title="5 estrellas">
+            <label htmlFor="star5" title="5 estrellas">
               ★
             </label>
 
@@ -125,7 +125,7 @@ export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange
         </fieldset>
         <button
           type="submit"
-          className="bg-amber-800 text-white py-1 px-2 rounded-md hover:bg-amber-900 cursor-pointer my-5"
+          className="bg-green-800 text-white py-1 px-2 rounded-md hover:bg-green-900 cursor-pointer my-5 font-bold"
         >
           Guardar Libro
         </button>

@@ -1,11 +1,39 @@
-export const BookList = ({listaBooks}) => {
+export const BookList = ({ listaBooks, listaFiltrada }) => {
   return (
     <div className="m-10">
       <h2 className="text-2xl">Mis Libros</h2>
-      <p>Mostrando 8 de 150 libros</p>
+      <p>Mostrando {listaFiltrada.length} de {listaBooks.length} libros</p>
       <div className="grid grid-cols-4 gap-10">
-        {listaBooks.map((libro) => (
+        {listaFiltrada.map((libro) => (
           <div
+            onClick={() => {
+              console.log(libro.pdf);
+              console.log(libro.pdf.length);
+              const nuevaVentana = window.open();
+
+              nuevaVentana.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                <style>
+                html, body{
+                    margin:0;
+                    width:100%;
+                    height:100%;
+                }
+                iframe{
+                    width:100%;
+                    height:100%;
+                    border:none;
+                }
+                </style>
+                </head>
+                <body>
+                    <iframe src="${libro.pdf}"></iframe>
+                </body>
+                </html>
+                `);
+            }}
             className="bg-zinc-100 w-fit border-1 border-stone-300 rounded-xl  my-5"
             key={libro.id}
           >

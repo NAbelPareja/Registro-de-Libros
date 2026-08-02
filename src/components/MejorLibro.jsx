@@ -22,7 +22,21 @@ export const MejorLibro = ({ mejorLibro }) => {
     return () => clearInterval(intervalo)
   }, [])
 
-  return (
+  
+  if(mejorLibro.length === 0){
+    return (
+    <div className="">
+      <div className="flex flex-col items-center">
+        <div
+          className="bg-stone-400 w-100 items-center  rounded-full"
+        >
+          <h2>NO HAY LIBROS</h2>
+        </div>
+      </div>
+    </div>
+  );
+  }else{
+    return (
     <div className="">
       <div className="flex flex-col items-center">
         <div
@@ -40,4 +54,6 @@ export const MejorLibro = ({ mejorLibro }) => {
       </div>
     </div>
   );
+  }
+  
 };

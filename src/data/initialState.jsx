@@ -4,7 +4,8 @@ export const init= () => {
     if(datos){
       return JSON.parse(datos)
     }else{
-      localStorage.setItem("listaBooks", JSON.stringify(libros))
+      localStorage.setItem("listaBooks", JSON.stringify(libros
+       ))
     return libros
     }
 }
