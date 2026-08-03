@@ -7,7 +7,7 @@ export const AppRouter = () => {
   return (
     <>
       <Header></Header>
-      <div  className ="bg-stone-200 ">
+      <div  className ="bg-stone-200 min-h-screen">
       <Routes >
         <Route path="/*" element={<Navigate to="/home"  />} />
         <Route path="/home" element={<Home />} />
