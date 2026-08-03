@@ -43,7 +43,7 @@ export const Home = () => {
     return () => clearInterval(intervalo);
   }, [listaBooks.length]);
   return (
-      <div className="flex flex-col  md:flex-row space-between gap-20 px-5 md:px-10 lg:px-15 py-25">
+      <div className="flex flex-col  md:flex-row space-between gap-20 px-5 md:px-10 lg:px-15 pt-25">
         <div className="flex flex-col gap-5">
           <p className="text-amber-800 text-lg">
             Tu biblioteca personal digital
