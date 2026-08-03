@@ -47,10 +47,10 @@ export const Biblioteca = () => {
 
   return (
     <div className="flex flex-row space-between">
-      <div className="w-1/5">
+      <div className="w-1/3">
         <Navbar handleBuscarNombre ={handleBuscarNombre} handleBuscarCategoria={handleBuscarCategoria} handleBuscarEstado={handleBuscarEstado} handleBuscarfecha={handleBuscarfecha} fechaAgregada={fechaAgregada}></Navbar>
       </div>
-      <div>
+      <div >
         <BookList listaBooks= {listaBooks} listaFiltrada = {listaFiltrada}></BookList>
       </div>
     </div>

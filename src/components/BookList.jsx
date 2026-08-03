@@ -1,9 +1,12 @@
+import { FaStar } from "react-icons/fa";
 export const BookList = ({ listaBooks, listaFiltrada }) => {
   return (
-    <div className="m-10">
-      <h2 className="text-2xl">Mis Libros</h2>
-      <p>Mostrando {listaFiltrada.length} de {listaBooks.length} libros</p>
-      <div className="grid grid-cols-4 gap-10">
+    <div className=" m-3 md:m-5 lg:m-10 ">
+      <h2 className="text-normal md:text-xl lg:text-2xl">Mis Libros</h2>
+      <p>
+        Mostrando {listaFiltrada.length} de {listaBooks.length} libros
+      </p>
+      <div className=" grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-10">
         {listaFiltrada.map((libro) => (
           <div
             onClick={() => {
@@ -48,7 +51,15 @@ export const BookList = ({ listaBooks, listaFiltrada }) => {
               </p>
               <h3 className="font-bold">{libro.titulo}</h3>
               <p className="text-amber-950">{libro.autor}</p>
-              <p>{libro.calificacion}</p>
+              <p className="flex flex-row gap-1">
+                {[1, 2, 3, 4, 5].map((valor) => (
+                  <FaStar
+                    key={valor}
+                    value={libro.calificacion}
+                    className={` cursor-pointer text-xl ${valor <= libro.calificacion ? "text-yellow-500" : "text-gray-300"}`}
+                  />
+                ))}
+              </p>
             </div>
           </div>
         ))}

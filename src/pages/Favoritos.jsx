@@ -85,32 +85,39 @@ export const Favoritos = () => {
     }
   };
 
+  const [calificacion, setCalificacion] = useState(0)
+ 
+
   useEffect(() => {
     localStorage.setItem("listaBooks", JSON.stringify(listaBooks));
     console.log("Lista de libros total",listaBooks);
   }, [listaBooks]);
 
   return (
-    <div className="flex flex-row space-between gap-5 p-10 ">
+    <div className="flex flex-col sm:flex-row space-between  gap-3 lg:gap-5 p-5 md:p-10 ">
       <div className="basis-[45%]">
         <BooksMuestra handleEditarLibro={handleEditarLibro} eliminarLibro= {eliminarLibro} agregarfavorito={agregarfavorito} listaBooks={listaBooks}
         
         ></BooksMuestra>
       </div>
-      <div className="basis-[25%]">
+      <div className="basis-[55%] flex flex-col md:flex-row gap-3 lg:gap-5">
+      <div className="basis-[45%]">
         <BookPdfLoad
           handlePdf={handlePdf}
           handlePortada={handlePortada}
           form={form}
+          calificacion ={calificacion}
+          setCalificacion={setCalificacion}
         ></BookPdfLoad>
       </div>
-      <div className="basis-[30%]">
+      <div className="basis-[55%]">
         <BookForm
           form={form}
           handleGuardarLibro={handleGuardarLibro}
           handleInpuChange={handleInpuChange}
           categorias={categorias}
         ></BookForm>
+      </div>
       </div>
     </div>
   );

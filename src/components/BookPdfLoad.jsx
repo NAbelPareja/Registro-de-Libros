@@ -1,3 +1,4 @@
+import { FaFilePdf } from "react-icons/fa";
 export const BookPdfLoad = ({ handlePdf, handlePortada, form }) => {
   return (
     <div className="flex flex-col gap-5">
@@ -29,10 +30,10 @@ export const BookPdfLoad = ({ handlePdf, handlePortada, form }) => {
             required
           />
           <label
-            className="border-2 bg-amber-700 border-none text-stone-100 font-bold rounded-xl w- px-2 py-2 flex flex-col items-center justify-center cursor-pointer hover:bg-amber-800 hover:scale-110 transition "
+            className="border-2 bg-amber-700 border-none text-stone-100 font-bold rounded-xl w- px-2 py-2 flex flex-row items-center justify-center gap-1 cursor-pointer hover:bg-amber-800 hover:scale-110 transition "
             htmlFor="pdf"
           >
-            Seleccionar archivos PDF
+            <FaFilePdf /> Seleccionar archivos PDF
           </label>
         </div>
         <p className="text-stone-700 flex flex-col items-center justify-center">

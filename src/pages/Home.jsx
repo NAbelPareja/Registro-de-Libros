@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { MejorLibro } from "../components/MejorLibro";
-import { UltimosLibros } from "../components/UltimosLibros";
 import { useBooks } from "../hooks/useBooks";
 
 export const Home = () => {
@@ -43,11 +42,8 @@ export const Home = () => {
 
     return () => clearInterval(intervalo);
   }, [listaBooks.length]);
-  console.log("El valor de indice es: ",indice)
-  console.log( listaBooks.length)
   return (
-    <div className=" px-15 py-20">
-      <div className="flex flex-row space-between gap-20 ">
+      <div className="flex flex-col  md:flex-row space-between gap-20 px-5 md:px-10 lg:px-15 py-25">
         <div className="flex flex-col gap-5">
           <p className="text-amber-800 text-lg">
             Tu biblioteca personal digital
@@ -67,7 +63,7 @@ export const Home = () => {
               Suscribirse
             </button>
           </div>
-          <div className="flex flex-row gap-5 items-center">
+          <div className="flex flex-row gap-10 items-center">
             {listaBooks.length === 0 ? (
               <p>NO HAY LIBROS</p>
             ) : (
@@ -103,6 +99,5 @@ export const Home = () => {
           <MejorLibro mejorLibro={mejorLibro}></MejorLibro>
         </div>
       </div>
-    </div>
   );
 };

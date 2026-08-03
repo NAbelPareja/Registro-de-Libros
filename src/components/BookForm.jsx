@@ -1,6 +1,11 @@
-
-export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange }) => {
-
+import { FaSave } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+export const BookForm = ({
+  categorias,
+  form,
+  handleGuardarLibro,
+  handleInpuChange,
+}) => {
   return (
     <div className="">
       <form action="" onSubmit={handleGuardarLibro}>
@@ -39,9 +44,12 @@ export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange
               value={form.categoria}
               onChange={handleInpuChange}
               required
-              >
-              { categorias.map(valor => (
-                <option key={valor.id} value={valor.id}>{valor.nombre}</option>
+            >
+              <option value="">Seleccionar categoría</option>
+              {categorias.map((valor) => (
+                <option key={valor.id} value={valor.id}>
+                  {valor.nombre}
+                </option>
               ))}
             </select>
           </div>
@@ -55,38 +63,29 @@ export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange
               value={form.estado}
               onChange={handleInpuChange}
             >
-              <option value="">Por leer</option>
-              <option value="">Leyendo</option>
-              <option value="">Terminado</option>
+              <option value="">Seleccionar estado</option>
+              <option value="Por leer">Por leer</option>
+              <option value="Leyendo">Leyendo</option>
+              <option value="Terminado">Terminado</option>
             </select>
           </div>
-          <div>
-            <label htmlFor="">Calificacion</label>
-            <input type="radio" id="star5" name="calificacion" value={form.calificacion}
-              onChange={handleInpuChange}/>
-            <label htmlFor="star5" title="5 estrellas">
-              ★
-            </label>
-
-            <input type="radio" id="star4" name="calificacion" value="4" />
-            <label htmlFor="star4" title="4 estrellas">
-              ★
-            </label>
-
-            <input type="radio" id="star3" name="calificacion" value="3" />
-            <label htmlFor="star3" title="3 estrellas">
-              ★
-            </label>
-
-            <input type="radio" id="star2" name="calificacion" value="2" />
-            <label htmlFor="star2" title="2 estrellas">
-              ★
-            </label>
-
-            <input type="radio" id="star1" name="calificacion" value="1" />
-            <label htmlFor="star1" title="1 estrella">
-              ★
-            </label>
+          <div className="flex flex-row gap-1">
+            <p>Calificacion</p>
+            {[1, 2, 3, 4, 5].map((valor) => (
+              <FaStar
+                key={valor}
+                onChange={handleInpuChange}
+                onClick={() =>
+                  handleInpuChange({
+                    target: {
+                      name: "calificacion",
+                      value: valor,
+                    },
+                  })
+                }
+                className={` cursor-pointer text-2xl ${valor <= form.calificacion ? "text-yellow-500" : "text-gray-300"}`}
+              />
+            ))}
           </div>
           <div className="flex flex-col w-full gap-1">
             <label htmlFor="">Descripcion</label>
@@ -98,7 +97,7 @@ export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange
               onChange={handleInpuChange}
             />
           </div>
-          
+
           <div className="flex flex-col w-full gap-1">
             <label htmlFor="">Fecha de Publicacion</label>
             <input
@@ -125,9 +124,9 @@ export const BookForm = ({categorias, form, handleGuardarLibro, handleInpuChange
         </fieldset>
         <button
           type="submit"
-          className="bg-green-800 text-white py-1 px-2 rounded-md hover:bg-green-900 cursor-pointer my-5 font-bold"
+          className="bg-green-800 text-white py-1 px-2 rounded-md flex flex-row items-center gap-1 hover:bg-green-900 cursor-pointer my-5 font-bold"
         >
-          Guardar Libro
+          <FaSave /> Guardar Libro
         </button>
       </form>
     </div>
