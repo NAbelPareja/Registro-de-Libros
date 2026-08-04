@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./portada.png" alt="MyLibrary Banner" width="100%">
+  <img src="./portada.jpg" alt="MyLibrary Banner" width="100%">
 </p>
 
 <h1 align="center">📚 MyLibrary</h1>
